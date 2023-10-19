@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>회원가입 완료 후 정보 확인</title>
 </head>
 <body>
   <h1>회원가입이 완료되었습니다</h1>

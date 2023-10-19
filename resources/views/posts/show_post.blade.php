@@ -26,11 +26,12 @@
     <form style="display:inline-block" action="/posts/{{$post->id}}/edit" method="get">
       <input type="submit" value="수정"/>
     </form>
-    <form style="display:inline-block" action="" method="post">
+    <form style="display:inline-block" onsubmit="return confirm('정말 삭제 할꺼?')" action="" method="post">
       @csrf
       @method("delete")
       <input type="submit" value="삭제"/>
     </form>
+    <a href="/posts">돌아가기</a>
   </div>
 </body>
 </html>

@@ -7,7 +7,8 @@
   <title>게시글 리스트</title>
 </head>
 <body>
-  <h2>게시글 리스트</h2>
+  <h2>게시글 리스트({{$count}})</h2>
+  <button><a href="/posts/create">글쓰기</a></button>
   <table>
     <tr>
       <th> 연번</th><th>제목</th><th>작성자</th><th>작성일</th>
@@ -21,6 +22,7 @@
     </tr>
     @endforeach
   </table>
+  
 
 </body>
 </html>

@@ -31,5 +31,6 @@
                 </div>
             @endforeach
         </div>
+        <a href="/posts">글 보러가기</a>
     </body>
 </html>
