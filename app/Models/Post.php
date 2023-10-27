@@ -17,4 +17,16 @@ class Post extends Model
     //시발 셤문제 나옴 이거 둘중에 하나 쓰면됨
     //protected $fillable = ['title', 'content', 'user_id']; //화이트 리스트
     protected $guarded = ['created_at', 'updated_at'];// 블랙 리스트
+
+
+
+    public function comments(){
+        //return $this->hasMany(Comment::class, 'post_id', 'id');
+        //자동으로 인식 하지만 인식 못하면 직접 입력 = 'post_id', 'id'
+        return $this->hasMany(Comment::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
