@@ -28,4 +28,5 @@ Route::resource('/users', UserController::class);
 Route::resource('/posts', PostController::class);
 
 //중첩 메소드로 정의, nested resource                          except()는 라우트에 맵핑을 빼라는 뜻
-Route::resource('/posts.comments', CommentController::class)->except(['create']);
+Route::resource('/posts.comments', CommentController::class)->except(['create','show', 'index','edit']);
+//Route::resource('/posts.comments', CommentController::class)->only(['store','update', 'delete']);

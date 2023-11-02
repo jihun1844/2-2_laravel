@@ -65,9 +65,19 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $post_id, string $comment_id)
     {
-        //
+        //$comment_id에 해당하는 레코드를 comments 페이블에서 인출하고
+        //Comment 모델 객체로 생성한다
+        $comment = Comment::find($comment_id);
+        $comment->content = $request->content;
+        $comment->save();
+        //그 모델 객체의 content를 $request에 있는 content 값으로 변경하고
+        //그 모델객체의  매서드를 호출한다
+
+        return redirect('/posts/' . $post_id);
+        //이 댓글의 게시글 상세보기 페이지로 redirect
+        
     }
 
     /**
