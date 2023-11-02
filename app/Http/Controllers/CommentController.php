@@ -83,8 +83,11 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $post_id, string $comment_id)
     {
-        //
+        //comments 테이블에서 id 칼럼값이 $comment_id 인 레코드를 찾아 삭제
+        Comment::destroy($comment_id);
+
+        return redirect('/posts/' . $post_id);
     }
 }

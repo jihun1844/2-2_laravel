@@ -5,23 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>게시글 상세 보기</title>
-  <script type="text/javascript">
-    function send_delete(num){
-      const result = confirm("Are you sure?");
-      if(result == false){
-        return false;
-      }
-      
-      //이 html 문서에서 이름이 _method인 DOM객체를 찾아서
-      //그 객체의 value값을 "delete"로 변경하고 return true 하면
-      //서버로 요청이 발송 된다
-      const formTag = document.getElementsById(num);
-      const tags = formTag.getElementsByName("_method");
-      tags[0].value = "delete";
-      return false;
 
+  <script type="text/javascript">
+
+    function send_delete(num){
+      return confirm("Are you sure?");
     }
   </script>
+
 </head>
 <body>
   
@@ -58,7 +49,7 @@
     <form action="/posts/{{$post->id}}/comments" method="post">
       @csrf
       <div>
-        <textarea name="content" id="" cols="30" rows="1"></textarea>
+        <textarea required name="content" cols="30" rows="1"></textarea>
       </div>
       <input type="submit" value="등록">
       <hr>
@@ -69,21 +60,24 @@
           <tr>
             <th> 연번</th><th>내용</th><th>작성자</th><th>작성일</th>
           </tr>
-          @foreach($post->comments as $comment)
+          @foreach($post->comments()->orderBy('created_at', 'desc')->get() as $comment)
           <form action="/posts/{{$post->id}}/comments/{{$comment->id}}" method="post" id="{{$loop->index+1}}">
-            
             <tr>
               <td>{{$loop->index+1}}</td>
               <td><input type="text" value="{{$comment->content}}" name="content"></td>
               <td>{{$comment->user_id}}</td>
               <td>{{$comment->created_at}}</td>
               <td><input type="submit" value="수정"></td>
-              <td><input type="submit" onclick="send_delete({{$loop->index+1}})" value="삭제"></td>
               @csrf
-
               @method("put")
-            </tr>
+           
           </form>
+          <form action="/posts/{{$post->id}}/comments/{{$comment->id}}" method="post">
+            <td><input type="submit" onclick="return send_delete()" value="삭제"></td>
+            @csrf
+            @method("delete")
+          </form>
+        </tr>
           @endforeach
         </table>
     </div>

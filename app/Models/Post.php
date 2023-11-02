@@ -26,6 +26,14 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function latestComment(){
+        return $this->hasOne(Comment::class)->latestOfMany();
+    }
+
+    public function oldestComment(){
+        return $this->hasOne(Comment::class)->oldestOfMany();
+    }
+
     public function user(){
         return $this->belongsTo(User::class);
     }
