@@ -21,8 +21,8 @@ class Post extends Model
 
 
     public function comments(){
-        //return $this->hasMany(Comment::class, 'post_id', 'id');
-        //자동으로 인식 하지만 인식 못하면 직접 입력 = 'post_id', 'id'
+         //return $this->hasMany(Comment::class, 'post_id', 'id');
+         //자동으로 인식 하지만 인식 못하면 직접 입력 = 'post_id', 'id'
         return $this->hasMany(Comment::class);
     }
 
