@@ -80,4 +80,9 @@ class User extends Authenticatable
         //return $this->hasManyThrough(Comment::class, Post::class);
         return $this->hasManyThrough(Comment::class, Post::class, 'user_id', 'post_id', 'id', 'id');
     }
+
+    //Role 과의 N:M 관계를 정의하는 메서드를 정의하자
+    public function roles(){
+        return $this->belongsToMany(Role::class, 'user_id', 'role_id', 'id', 'id');
+    }
 }
